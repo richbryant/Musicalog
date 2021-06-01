@@ -71,5 +71,10 @@ namespace Musicalog.Client.Pages
             };
             Console.WriteLine($"MaxPages = {Filter.MaxPages}");
         }
+
+        private void CreateNew()
+        {
+            NavigationManager.NavigateTo($"/album/{0}");
+        }
     }
 }

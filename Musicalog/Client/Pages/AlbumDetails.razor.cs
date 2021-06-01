@@ -18,6 +18,8 @@ namespace Musicalog.Client.Pages
         [Inject]
         public IDataService DataService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
         public bool NewAlbum { get; set; }
 
         public Album Album { get; set; } = new Album();
@@ -54,13 +56,13 @@ namespace Musicalog.Client.Pages
         private Modal artistModal;
 
         private Label newLabel = new Label();
-        private Artist newArtist  = new Artist();
+        private Artist newArtist = new Artist();
 
         private async Task SubmitLabel()
         {
             var response = await DataService.PostLabel(newLabel);
             Console.WriteLine($"received response {response}");
-            if(response == 0) return;
+            if (response == 0) return;
             Labels = await DataService.GetLabels();
             HideLabelModal();
             StateHasChanged();
@@ -70,7 +72,7 @@ namespace Musicalog.Client.Pages
         {
             var response = await DataService.PostArtist(newArtist);
             Console.WriteLine($"received response {response}");
-            if(response == 0) return;
+            if (response == 0) return;
             Artists = await DataService.GetArtists();
             HideArtistModal();
             StateHasChanged();
@@ -104,6 +106,30 @@ namespace Musicalog.Client.Pages
             await file.WriteToStreamAsync(stream);
             newArtist.Image = stream.ToArray();
             StateHasChanged();
+        }
+
+        private async Task ChangeAlbumPicture(FileChangedEventArgs e)
+        {
+            var files = e.Files;
+            var file = files[0];
+            using var stream = new MemoryStream();
+            await file.WriteToStreamAsync(stream);
+            Album.Image = stream.ToArray();
+            StateHasChanged();
+        }
+
+        private async Task UpdateAlbum()
+        {
+            if (!NewAlbum)
+            {
+                var response = await DataService.UpdateAlbum(Album);
+            }
+            NavigationManager.NavigateTo("/");
+        }
+
+        private void CancelOut()
+        {
+            NavigationManager.NavigateTo("/");
         }
 
     }

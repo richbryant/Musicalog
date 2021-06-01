@@ -42,7 +42,6 @@
                             </Addon>
                         </Addons>
                     </Field>
-
                     <Field>
                         <FieldLabel>Select or Add Artist</FieldLabel>
                         <Addons>
@@ -67,9 +66,15 @@
                         <FieldLabel>Album Image File</FieldLabel>
                         <TextEdit Placeholder="@Album.ImageSource" Disabled="true" />
                         <FieldHelp>You can change the image using the selector below</FieldHelp>
-                        <FileEdit />
+                        <FileEdit Changed="@ChangeAlbumPicture" />
                     </Field>
 
+                </Column>
+            </Row>
+            <Row>
+                <Column Float="Float.Right">
+                    <Button Color="Color.Secondary" Float="Float.Right" Clicked="@CancelOut">Cancel</Button>
+                    <Button Color="Color.Secondary" Float="Float.Right" Clicked="@(() => InvokeAsync(UpdateAlbum))">Save</Button>
                 </Column>
             </Row>
         </Container>

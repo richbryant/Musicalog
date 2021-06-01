@@ -17,6 +17,9 @@ namespace Musicalog.Client.Services
         [Get("/Albums/{id}")]
         Task<Album> GetAlbum(long id);
 
+        [Put("/Albums")]
+        Task<int> UpdateAlbum(Album album);
+
         [Get("/Artists")]
         Task<List<Artist>> GetArtists();
 
