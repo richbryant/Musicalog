@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\CopyMe.SqlServer.tt.txt" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\DataAnnotations.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\DataModel.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\EditableObject.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\Equatable.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\Humanizer.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\LinqToDB.SqlServer.SqlTypes.Tools.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\LinqToDB.SqlServer.Tools.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\LinqToDB.SqlServer.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\LinqToDB.Tools.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\LinqToDB.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\MultipleFiles.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\NotifyDataErrorInfo.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\NotifyPropertyChanged.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\ObsoleteAttributes.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\PluralizationService.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\T4Model.ttinclude" />
+    <None Remove="C:\Users\richb\.nuget\packages\linq2db.sqlserver\3.3.0\contentFiles\any\any\LinqToDB.Templates\Validation.ttinclude" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.6" />
+    <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
+    <PackageReference Include="linq2db.AspNet" Version="3.3.0" />
+    <PackageReference Include="linq2db.SqlServer" Version="3.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Musicalog.Datalayer\Musicalog.Datalayer.csproj" />
+    <ProjectReference Include="..\Client\Musicalog.Client.csproj" />
+    <ProjectReference Include="..\Shared\Musicalog.Shared.csproj" />
+  </ItemGroup>
+
+
+</Project>

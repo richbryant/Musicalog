@@ -1,0 +1,13 @@
+﻿<Card Class="mb-4 shadow-sm">
+    <CardImage Source="@Album.ImageSource" Alt="@Album.Name" />
+    <CardBody>
+        <CardTitle Size="5">@Album.Name</CardTitle>
+        <CardText>
+            Artist: @Album.Artist.Name <br />
+            Label&nbsp;: @Album.Label.Name <br />
+        </CardText>
+    </CardBody>
+    <CardFooter Float="Float.Right">
+        <Button Clicked="() => OpenDetails.InvokeAsync(Album.Id)" Class="btn-sm btn-outline-secondary">Edit</Button>
+    </CardFooter>
+</Card>

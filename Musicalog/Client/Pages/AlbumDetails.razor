@@ -1,0 +1,124 @@
+﻿@page "/album"
+@page "/album/{id:long}"
+<main role="main">
+    <section class="jumbotron text-center">
+        <Container>
+            <Heading Size="HeadingSize.Is1">Musicalog</Heading>
+            <Paragraph class="lead text-muted">Browse the albums and select below.</Paragraph>
+        </Container>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <Container>
+            <Row>
+                <Column ColumnSize="ColumnSize.Is6.OnDesktop">
+                    <Figure Size="FigureSize.Is512x512">
+                        <FigureImage Source="@Album.ImageSource" AlternateText="@Album.Name" />
+                        <FigureCaption>@Album.Name <br />@Album.Artist.Name</FigureCaption>
+                    </Figure>
+                </Column>
+                <Column ColumnSize="ColumnSize.Is6.OnDesktop">
+
+                    <Field>
+                        <FieldLabel>Album Name:</FieldLabel>
+                        <TextEdit @bind-Text="@Album.Name" />
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Select or Add Record Label</FieldLabel>
+                        <Addons>
+                            <Addon AddonType="AddonType.Body">
+                                <Select TValue="long" @bind-SelectedValue="@Album.LabelId">
+                                    @foreach (var label in Labels)
+                                    {
+                                        <SelectItem Value="@label.Id">@label.Name</SelectItem>
+                                    }
+                                </Select>
+                            </Addon>
+                            <Addon AddonType="AddonType.End">
+                                <Tooltip Text="Add a new Record Label">
+                                    <Button Color="Color.Light" Clicked="ShowLabelModal"><i class="fas fa-plus"></i></Button>
+                                </Tooltip>
+                            </Addon>
+                        </Addons>
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Select or Add Artist</FieldLabel>
+                        <Addons>
+                            <Addon AddonType="AddonType.Body">
+                                <Select TValue="long" @bind-SelectedValue="@Album.ArtistId">
+                                    @foreach (var artist in Artists)
+                                    {
+                                        <SelectItem Value="@artist.Id">@artist.Name</SelectItem>
+                                    }
+                                </Select>
+                            </Addon>
+                            <Addon AddonType="AddonType.End">
+                                <Tooltip Text="Add a new Artist">
+                                    <Button Color="Color.Light" Clicked="ShowArtistsModal"><i class="fas fa-plus"></i></Button>
+                                </Tooltip>
+                            </Addon>
+                        </Addons>
+
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Album Image File</FieldLabel>
+                        <TextEdit Placeholder="@Album.ImageSource" Disabled="true" />
+                        <FieldHelp>You can change the image using the selector below</FieldHelp>
+                        <FileEdit />
+                    </Field>
+
+                </Column>
+            </Row>
+        </Container>
+    </div>
+</main>
+<Modal @ref="labelModal">
+    <ModalContent Centered="true">
+        <ModalHeader>
+            <ModalTitle>Add a Label</ModalTitle>
+            <CloseButton />
+        </ModalHeader>
+        <ModalBody>
+            <Field>
+                <FieldLabel>Name</FieldLabel>
+                <TextEdit @bind-Text="@newLabel.Name" Placeholder="Enter Record Label name..." />
+            </Field>
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideLabelModal">Close</Button>
+            <Button Color="Color.Secondary" Clicked="@(() => InvokeAsync(SubmitLabel))">Save Changes</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+<Modal @ref="artistModal">
+    <ModalContent Centered="true">
+        <ModalHeader>
+            <ModalTitle>Employee edit</ModalTitle>
+            <CloseButton />
+        </ModalHeader>
+        <ModalBody>
+            <Field>
+                <FieldLabel>Name</FieldLabel>
+                <TextEdit @bind-Text="@newArtist.Name" Placeholder="Enter Artist name..." />
+            </Field>
+            <Field>
+                <FieldLabel>Image</FieldLabel>
+                <TextEdit Placeholder="@newArtist.ImageSource" Disabled="true" />
+            </Field>
+            <Field>             
+                <FieldHelp>You can change the image using the selector below</FieldHelp>
+                <FileEdit @bind-Value="@newArtist.Image" Filter=".jpg" Changed="@ChangeArtistPicture"  />
+            </Field>
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideArtistModal">Close</Button>
+            <Button Color="Color.Secondary" Clicked="@(() => InvokeAsync(SubmitArtist))">Save Changes</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+

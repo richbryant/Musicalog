@@ -1,0 +1,74 @@
+﻿@page "/"
+
+<main role="main">
+    <Jumbotron Class="text-center">
+        <JumbotronTitle Size="JumbotronTitleSize.Is3">Musicalog</JumbotronTitle>
+        <JumbotronSubtitle>Browse the albums and select below</JumbotronSubtitle>
+    </Jumbotron>
+
+
+    <div class="album py-5 bg-light">
+        <Container>
+            <Row>
+                <Column ColumnSize="ColumnSize.Is4.OnDesktop">
+                    <Field>
+                        <FieldLabel>Items Per Page</FieldLabel>
+                        <Select TValue="int" @bind-SelectedValue="@pageSize">
+                            @foreach (var item in Enumerable.Range(1, AlbumsCount).Where(x => x % 10 == 0))
+                            {
+                                <SelectItem Value="@item">@item</SelectItem>
+                            }
+                        </Select>
+                    </Field>
+                </Column>
+                <Column ColumnSize="ColumnSize.Is4.OnDesktop">
+                    <Field>
+                        <FieldLabel>Select Ordering</FieldLabel>
+                        <Check TValue="bool" @bind-Checked="@OrderByArtist">by Artist</Check>
+                        <Check TValue="bool" @bind-Checked="@OrderByLabel">by Label</Check>
+                    </Field>
+                </Column>
+                <Column ColumnSize="ColumnSize.Is4.OnDesktop" Class="text-center align-middle">
+                    <Field>
+                        <Button Clicked="@LoadAlbumsAsync">Apply Filters</Button>
+                    </Field>
+                </Column>
+            </Row>
+            <Row>
+                @if (Albums.Any())
+                {
+                    @foreach (var item in Albums)
+                    {
+                        <Column ColumnSize="ColumnSize.Is4.OnDesktop">
+                            <AlbumCard Album="@item" OpenDetails="@OpenAlbum" />
+                        </Column>
+                    }
+                }
+            </Row>
+            <Row>
+                <Column ColumnSize="ColumnSize.Is12.OnDesktop">
+                    <Pagination Alignment="Alignment.Center">
+                        <PaginationItem>
+                            <PaginationLink Clicked="(() => SetPage(0))">
+                                <span aria-hidden="true">«</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                        @foreach (var item in Enumerable.Range(1, Filter.MaxPages))
+                        {
+                            <PaginationItem>
+                                <PaginationLink Clicked="(() => SetPage(item))">
+                                    @item
+                                </PaginationLink>
+                            </PaginationItem>
+                        }
+                        <PaginationItem>
+                            <PaginationLink Clicked="(() => SetPage(Filter.MaxPages))">
+                                <span aria-hidden="true">»</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                    </Pagination>
+                </Column>
+            </Row>
+        </Container>
+    </div>
+</main>

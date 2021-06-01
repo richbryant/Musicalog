@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+<Layout>
+    <LayoutHeader>
+        <NavMenu />
+    </LayoutHeader>
+    <LayoutContent>
+        @Body
+    </LayoutContent>
+    <LayoutFooter>
+        <footer class="text-muted">
+            <Container>
+                <Paragraph Class="float-right">
+                    <a href="#">Back to top</a>
+                </Paragraph>
+                <Paragraph Class="float-center">
+                    Written by Rich Bryant using :-
+                    <ul>
+                        <li><a href="https://github.com/reactiveui/refit">Refit</a></li>
+                        <li><a href="https://blazorise.com/">Blazorise</a></li>
+                        <li><a href="https://github.com/linq2db/linq2db">LINQ to DB</a></li>
+                        <li><a href="https://github.com/louthy/language-ext">LanguageExt extensions</a></li>
+                    </ul>
+                </Paragraph>
+            </Container>
+        </footer>
+    </LayoutFooter>
+</Layout>
